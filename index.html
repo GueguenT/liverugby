@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="http://thomas-gueguen.fr/cssss/style.css">
+	<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+	<h1 class="text-center">Hello world</h1>
+
+	<input style="width : 80%; margin-top : 75px; margin-left : auto; margin-right : auto; display : block;" type="range" name="ballon" id="ballon" min="0" max="100"/>
+	<!--<div class="progress center-block" style="width : 80%; margin-top : 50px;" >
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="ballon2"><span class="sr-only" style="color: white;"></div>
+     </div>-->
+
+	<ul style="margin-top : 50px; width: 80%;" class="list-group center-block">
+		<div class="news"></div>
+	</ul>
+
+		
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+	var socket = io();
+	socket.on('position', function(pos){
+		$('#ballon').val(pos);
+		$("#ballon").prop('disabled', true);
+		//$('#ballon2').width(pos + '%');
+	});
+
+	socket.on('history', function(body){
+		$.each(body, function(key, value){
+			$('.news').prepend('<li>' + value + '</li>');
+		});
+	});	
+
+	socket.on('news', function(body){
+		$('.news').prepend('<li>' + body + '</li>');
+	});
+</script>
+
+</body>
+</html>
+

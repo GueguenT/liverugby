@@ -1,0 +1,15 @@
+{
+  "name": "liverugby",
+  "version": "1.0.0",
+  "description": "suivre le ballon de rugby",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7"
+  }
+}

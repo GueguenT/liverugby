@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Page</title>
+	<link rel="stylesheet" type="text/css" href="http://thomas-gueguen.fr/cssss/style.css">
+	<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<h1 class="text-center">Admin Page</h1>
+		<textarea style="width : 50%;"name="message" class="form-control center-block" id="message" rows='8' cols='50'></textarea>
+		<button type="submit" style="margin-top : 30px;" class="btn btn-primary center-block" name="button">Send</button>
+	<br>
+		<div class="text-center"><h2 id="nbr"></h2></div>
+	<br>
+		<input style="width : 80%; margin-left : auto; margin-right : auto; display : block;"  type="range" name="ballon" id="ballon" min="0" max="100"/>
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js">
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var nbr = $('#nbr').text($('#ballon').val());
+	$('#ballon').change(function(){
+		$('#nbr').text($('#ballon').val());
+		socket.emit('position', ballon.value);
+	});
+    $("button").click(function(){
+    	
+    	socket.emit('message', message.value);
+    	$('#message').val(null);
+    	//$('#message').val() == {};
+    });
+});
+</script>
+
+<script>
+	var socket = io();
+</script>
+
+</body>
+</html>
